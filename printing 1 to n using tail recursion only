@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void pq(int n,int k=1)
+{ 
+    if(n<1)
+    {
+        return;
+    }
+    cout<<k<<" ";
+    pq(n-1,k+1); 
+}
+int main()
+{
+    pq(5);
+    return 0;
+}
