@@ -1,0 +1,122 @@
+//question link-->
+#include<bits/stdc++.h>
+using namespace std;
+
+#define shuru               int main (void)
+#define khtm                return 0;
+#define fast                ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define whilecase           while (tc--)
+#define iter(i,strt,N)      for(int i=strt; i<N; i++)
+#define riter(i,strt,N)     for(int i=strt; i>=N; i--)
+#define all(x)              (x).begin(), (x).end()
+#define inp(n,v)            for(int i=0;i<n;i++){cin>>v[i];}
+#define out(n,v)            for(int i=0;i<n;i++){cout<<v[i]<<" ";}
+#define vi                  vector <int>
+#define si		            set <int>
+#define vs                  vector <string>
+#define pr                  pair <int,int>
+#define mp                  map <int,int>
+#define mkp                 make_pair
+#define ump                 unordered_map<int,int>
+#define pb                  push_back
+#define in                  insert
+#define llu                 unsigned long long
+#define lld                 long long
+#define endl                "\n"
+const unsigned int MOD = 1000000007;
+
+
+class node
+{
+    public:
+    int data;
+    node *next;
+    node(int d)
+    {
+        data=d;
+        next=NULL;
+    }
+};
+
+node* addnode(node*h,int x)
+{
+    node *ne=new node(x),*p=h;
+    if(h==NULL)
+    {
+        h=ne;
+    }
+    else
+    {
+        while(p->next!=NULL)
+        {
+            p=p->next;
+        }
+        p->next=ne;
+    }
+    return h;
+}
+node *insertathead(node*h,int x)
+{
+    node *ne=new node(x);
+    if(h==NULL)
+    {
+        h=ne;
+    }
+    else
+    {
+        ne->next=h;
+        h=ne;
+    }
+    return h;
+}
+
+node *insertinsorted(node *h,int x)
+{
+    node *ne=new node(x),*p=h;
+    if(h==NULL || x<=h->data)
+    {
+        ne->next=h;
+        h=ne;
+    }
+    else
+    {
+        while(p->next!=NULL && p->next->data<x)
+        {
+            p=p->next;
+        }
+        ne->next=p->next;
+        p->next=ne;
+    }
+    return h;
+        
+}
+void display(node *h)
+{
+    if(h==NULL)
+    {
+        cout<<"empty";
+        return;
+    }
+    while(h!=NULL)
+    {
+        cout<<h->data<<" ";
+        h=h->next;
+    }
+}
+shuru
+{
+    lld tc=1;
+    //cin>>tc;
+    node*h=NULL;
+    h=addnode(h,5);
+    h=addnode(h,10);
+    h=addnode(h,15);
+    h=addnode(h,20);
+    h=insertathead(h,3);
+    h=insertathead(h,1);
+    h=insertinsorted(h,0);
+    
+    display(h);
+    
+    khtm
+}
