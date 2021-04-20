@@ -1,0 +1,71 @@
+//question link-->
+#include<bits/stdc++.h>
+using namespace std;
+
+#define shuru               int main (void)
+#define khtm                return 0;
+#define fast                ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define whilecase           while (tc--)
+#define iter(i,strt,N)      for(int i=strt; i<N; i++)
+#define riter(i,strt,N)     for(int i=strt; i>=N; i--)
+#define all(x)              (x).begin(), (x).end()
+#define inp(n,v)            for(int i=0;i<n;i++){cin>>v[i];}
+#define out(n,v)            for(int i=0;i<n;i++){cout<<v[i]<<" ";}
+#define vi                  vector <int>
+#define si		            set <int>
+#define vs                  vector <string>
+#define pr                  pair <int,int>
+#define mp                  map <int,int>
+#define mkp                 make_pair
+#define ump                 unordered_map<int,int>
+#define pb                  push_back
+#define in                  insert
+#define llu                 unsigned long long
+#define lld                 long long
+#define endl                "\n"
+const unsigned int MOD = 1000000007;
+
+
+void findpairwithgivensum(vector<lld> &v,lld target,lld n)
+{
+    unordered_map<lld,lld> mmp;
+    for(int i=0;i<n;i++)
+    {
+        if(mmp.find(target-v[i])!=mmp.end())
+        {
+            cout<<v[i]<<" "<<v[mmp[target-v[i]]];
+            return;
+        }
+        mmp.insert({v[i],i});
+    }
+    cout<<"NOT FOUND";
+}
+
+void matter()
+{
+    lld n;
+    cin>>n;
+    vector<lld> v(n);
+    for(int i=0;i<n;i++)
+    {
+        cin>>v[i];
+    }
+    lld target;
+    cin>>target;
+    findpairwithgivensum(v,target,n);
+}
+    
+
+shuru
+{
+    lld tc=1;
+    //cin>>tc;
+    whilecase
+    {
+         matter();
+         cout<<endl;
+    }
+    
+    
+    khtm
+}
