@@ -1,0 +1,75 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *reverse(ListNode *h)
+    {
+        ListNode* newh=NULL,*t;
+        if(h==NULL || h->next==NULL)
+        {
+            return h;
+        }
+        while(h!=NULL)
+        {
+            t=h->next;
+            h->next=newh;
+            newh=h;
+            h=t;
+        //  cout<<newh->data<<" ";
+        }
+        return newh;
+    
+    }
+    void reorderList(ListNode* head) {
+        ListNode *l1,*l2,*t,*p,*q;
+        l1=head;
+        int k=0;
+        while(l1!=NULL)
+        {
+            k++;
+            l1=l1->next;
+        }
+        if(k==1)
+            return;
+        k=(k/2)+1;
+       // cout<<k;
+        t=head;
+        l1=head;
+        l2=t;
+        int i=0;
+        while(i<k-2)
+        {
+            l1=l1->next;
+            i++;
+        }
+        i=0;
+        while(i<k-1)
+        {
+            l2=l2->next;
+            i++;
+        }
+        
+        l1->next=NULL;
+        l1=head;
+        l2=reverse(l2);
+        while(l1!=NULL && l2!=NULL)
+        {
+            t=l1->next;
+            p=l2->next;
+
+            l1->next=l2;
+            if(t!=NULL)
+                l1->next->next=t;
+            l1=t;
+            l2=p;
+        }   
+    }
+};
