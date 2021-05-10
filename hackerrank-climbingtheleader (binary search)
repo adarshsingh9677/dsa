@@ -1,0 +1,101 @@
+//question link-->
+#include<bits/stdc++.h>
+using namespace std;
+
+#define shuru               int main (void)
+#define khtm                return 0;
+#define fast                ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define whilecase           while (tc--)
+#define iter(i,strt,N)      for(int i=strt; i<N; i++)
+#define riter(i,strt,N)     for(int i=strt; i>=N; i--)
+#define all(x)              x.begin(), x.end()
+#define inp(n,v)            for(int i=0;i<n;i++){cin>>v[i];}
+#define out(n,v)            for(int i=0;i<n;i++){cout<<v[i]<<" ";}
+#define vi                  vector <int>
+#define si                    set <int>
+#define vs                  vector <string>
+#define pr                  pair <int,int>
+#define mp                  map <int,int>
+#define mkp                 make_pair
+#define ump                 unordered_map<int,int>
+#define pb                  push_back
+#define in                  insert
+#define llu                 unsigned long long
+#define lld                 long long
+#define endl                "\n"
+const unsigned int MOD = 1000000007;
+
+
+void matter()
+{
+    lld n,m,k,sz=1;
+    cin>>n;
+    vector<lld>v;
+    cin>>k;
+    v.push_back(k);
+    
+    map<lld,lld> z;
+    for(int i=1;i<n;i++)
+    {
+        cin>>k;
+        if(k!=v[sz-1])
+        {
+            v.push_back(k);
+            sz++;
+        }
+    }
+    k=sz;
+    cin>>m;
+   
+    iter(i,0,m)
+    {
+        lld val;
+        cin>>val;
+        lld start=0,end=k-1,mid,f=0;
+        while(start<end)
+        {
+            mid=(start+end)/2;
+            if(v[mid]==val)
+            {
+                cout<<mid+1<<endl;
+                f=1;
+                break;
+            }
+            else if(v[mid]<val)
+            {
+                end=mid;
+            }
+            else
+            {
+                start=mid+1;
+            }
+        } 
+        
+        if(f==0)
+        {
+            if(val<v[k-1])
+            {
+                cout<<k+1<<endl;
+            }    
+            else
+            {
+                cout<<start+1<<endl;
+            }   
+        }
+    }   
+}
+    
+
+shuru
+{
+    lld tc=1;
+    //cin>>tc;
+    whilecase
+    {
+         matter();
+         cout<<endl;
+    }
+    
+    
+    khtm
+}
