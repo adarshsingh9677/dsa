@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int longestsubarrayhavinggivensum(vector<int> &v,int k,int &ending)
+{
+    int n=v.size(),sum=0,maxi=-1;
+    map<int,int>mmp;
+    for(int i=0;i<n;i++)
+    {
+        sum+=v[i];
+        
+        if(sum==k)
+        {
+            maxi=max(maxi,i+1);     
+        }
+        if(mmp.find(sum-k)!=mmp.end())
+        {
+            maxi=max(maxi,i-mmp[sum-k]);
+            ending=i;
+        }
+        if(mmp.find(sum)==mmp.end())
+            mmp[sum]=i;
+        
+    }
+    return maxi;
+}
+
+int main()
+{
+    int n,k,ending=-1,t;
+    cin>>n;
+    vector<int>v(n);
+    for(int i=0;i<n;i++)
+    {
+        cin>>v[i];
+    }
+    cin>>k;
+    t=longestsubarrayhavinggivensum(v,k,ending);
+    cout<<t<<endl;
+    cout<<"starting-"<<ending-t+1<<" ending-"<<ending;
+    
+}
