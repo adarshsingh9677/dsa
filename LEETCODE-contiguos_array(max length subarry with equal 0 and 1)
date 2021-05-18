@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int findMaxLength(vector<int>& v) {
+        
+        int n=v.size(),sum=0,maxi=0,k=0;
+        for(int i=0;i<n;i++)
+        {
+            if(v[i]==0)
+                v[i]--;
+        }
+        map<int,int>mmp;
+        for(int i=0;i<n;i++)
+        {
+            sum+=v[i];
+        
+            if(sum==k)
+            {
+                maxi=max(maxi,i+1);     
+            }
+            if(mmp.find(sum-k)!=mmp.end())
+            {
+                maxi=max(maxi,i-mmp[sum-k]);
+
+            }
+            if(mmp.find(sum)==mmp.end())
+                mmp[sum]=i;
+        
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(v[i]<0)
+                v[i]++;
+        }
+        return maxi;
+        
+        
+    }
+};
