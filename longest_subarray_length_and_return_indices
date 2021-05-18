@@ -11,7 +11,8 @@ int longestsubarrayhavinggivensum(vector<int> &v,int k,int &ending)
         
         if(sum==k)
         {
-            maxi=max(maxi,i+1);     
+            maxi=max(maxi,i+1);   
+            ending=i;
         }
         if(mmp.find(sum-k)!=mmp.end())
         {
