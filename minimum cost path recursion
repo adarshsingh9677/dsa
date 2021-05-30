@@ -1,0 +1,60 @@
+#include<bits/stdc++.h>
+using namespace std;
+int mini=INT_MAX;
+vector<vector<pair<int,int>>> ans;
+bool isvalid(int x,int y,int n,int m)
+{
+    if(x<n && y<m)
+        return true;
+    return false;
+}
+void ppath(vector<pair<int,int>> &path)
+{
+    int n=path.size();
+    for(int i=0;i<n;i++)
+    {
+        cout<<"{"<<path[i].first<<" "<<path[i].second<<"} ";
+    }
+    cout<<endl;
+}
+void printpath(vector<vector<int>> &v, vector<pair<int,int>>& path,int x, int y, int n, int m,int curcost)
+{
+    if(x==n-1 && y==m-1 && curcost<mini)
+    {
+        mini=curcost;
+        path.push_back(make_pair(x,y));
+        ans.push_back(path);
+        path.pop_back();
+        return;
+    }
+    curcost+=v[x][y];
+    path.push_back(make_pair(x,y));
+    
+    if(isvalid(x+1,y,n,m))
+        printpath(v,path,x+1,y,n,m,curcost);
+    if(isvalid(x,y+1,n,m))
+        printpath(v,path,x,y+1,n,m,curcost);
+    // if(isvalid(x+1,y+1,n,m))                
+    //     printpath(v,path,x+1,y+1,n,m,curcost);
+    path.pop_back();
+    curcost-=v[x][y];
+}
+
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    vector<vector<int>>v;
+    for(int i=0;i<n;i++)
+    {
+        vector<int>k(m);
+        for(int j=0;j<m;j++)
+        {
+            cin>>k[j];
+        }
+        v.push_back(k);
+    }
+    vector<pair<int,int>> path;
+    printpath(v,path,0,0,n,m,0);
+    ppath(ans[ans.size()-1]);
+}
