@@ -1,0 +1,19 @@
+int coin(vector<int>& coins,int n,int ind,int amount)
+    {
+        if(amount==0)
+        {
+            return 1;
+        }
+        if(ind>=n || amount<0)
+        {
+            return 0;
+        }
+        int left=coin(coins,n,ind,amount-coins[ind]);
+        int right=coin(coins,n,ind+1,amount);
+        return left+right;
+    }
+    int change(int amount, vector<int>& coins) {
+        int n=coins.size();
+        return coin(coins,n,0,amount);
+        
+    }
