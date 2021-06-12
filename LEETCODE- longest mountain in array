@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int longestMountain(vector<int>& v) {
+    int n=v.size();
+        if(n<3)
+            return 0;
+    int i=0,start,p=0,vl=0,maxi=0;
+    while(i<n-1)
+    {
+        if(v[i+1]>v[i])
+        {
+            start=i;
+            while(i<n-1 && v[i+1]>v[i])
+            {
+                i++;
+                p=1;
+            }
+            while(i<n-1 && v[i+1]<v[i])
+            {
+                i++;
+                vl=1;
+            }
+            if(p==1 && vl==1)
+            {
+                maxi=max(maxi,i-start+1);
+            }
+        }
+        else
+        {
+            i++;
+        }
+        p=0;
+        vl=0;
+        
+    }
+    return maxi;
+    }
+};
