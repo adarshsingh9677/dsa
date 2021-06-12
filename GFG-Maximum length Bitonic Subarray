@@ -1,0 +1,28 @@
+int bitonic(vector<int> v, int n) {
+	int i=0,len=1,maxi=1,ind;
+    while(i<n-1)
+    {
+        len=1;
+        while(i<n-1 && v[i]<=v[i+1])
+        {
+            i++;
+            len++;
+        }
+        ind=i;
+        while(i<n-1 && v[i]>=v[i+1])
+        {
+            i++;
+            len++;
+        }
+        maxi=max(maxi,len);
+        if(v[i]==v[i-1] )
+        {
+            while(v[i]==v[i-1] && i>ind)
+            {
+                i--;
+            }
+        }
+        
+    }
+    return maxi;
+	}
