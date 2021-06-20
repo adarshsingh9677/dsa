@@ -1,0 +1,120 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class twostack
+{
+    public:
+    int top1;
+    int top2;
+    int size;
+    twostack(){}
+    int *a;
+    twostack(int n)
+    {
+        size=n;
+        top1=-1;
+        top2=size;
+        a=new int[n];
+        for(int i=0;i<size;i++)
+        {
+            a[i]=0;
+        }
+    }
+    void push1(int data);
+    void push2(int data);
+    void pop1();
+    void pop2();
+   
+};
+void twostack:: push1(int data)
+{
+    if(top2-top1<=1)
+    {
+        cout<<"overflow_1"<<endl;
+        return;
+    }
+    else
+    {
+        top1++;
+        a[top1]=data;
+    }
+}
+
+void twostack:: push2(int data)
+{
+    if(top2-top1<=1)
+    {
+        cout<<"overflow_2"<<endl;
+        return;
+    }
+    else
+    {
+        top2--;
+        a[top2]=data;
+    }
+}
+
+void twostack:: pop1()
+{
+    if(top1==-1)
+    {
+        cout<<"Underflow_1"<<endl;
+    }
+    else
+    {
+        a[top1]=0;
+        top1--;
+    }
+}
+
+void twostack:: pop2()
+{
+    if(top2==size)
+    {
+        cout<<"Underflow_2"<<endl;
+    }
+    else
+    {
+        a[top2]=0;
+        top2++;
+    }
+}
+
+void display(int *a,int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        cout<<a[i]<<" ";
+    }
+    cout<<endl;
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    twostack ts= twostack(n);
+    ts.push1(1);
+    display(ts.a,ts.size);
+    ts.push1(2);
+    display(ts.a,ts.size);
+    ts.push1(3);
+    display(ts.a,ts.size);
+    ts.push2(100);
+    display(ts.a,ts.size);
+    ts.push2(99);
+    display(ts.a,ts.size);
+    ts.push2(98);
+    display(ts.a,ts.size);
+    ts.push2(97);
+    display(ts.a,ts.size);
+    ts.pop1();
+    display(ts.a,ts.size);
+    ts.pop2();
+    display(ts.a,ts.size);
+    ts.push2(65);
+    display(ts.a,ts.size);
+  
+    return 0;
+}
+
