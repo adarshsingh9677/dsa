@@ -1,0 +1,21 @@
+int heightandboolcheck(Node* root,bool &flag)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    int lh=heightandboolcheck(root->left,flag);
+    int rh=heightandboolcheck(root->right,flag);
+    if(abs(lh-rh)>1)
+    {
+        flag=false;
+    }
+    return max(lh,rh)+1;
+}
+bool isBalanced(Node *root)
+{
+    bool flag=true;
+    heightandboolcheck(root,flag);
+    return flag;
+    
+}
