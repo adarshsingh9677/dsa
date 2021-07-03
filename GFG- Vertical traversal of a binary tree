@@ -1,0 +1,32 @@
+map<int,map<int,vector<pair<int,int>>>> mmmp;
+    void solve(Node* root,int c,int r)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        mmmp[c][r].push_back(make_pair(r,root->data));
+        solve(root->left,c-1,r+1);
+        solve(root->right,c+1,r+1);
+    }
+    vector<int> verticalOrder(Node* root) {
+        vector<int> v;
+        if(root==NULL)
+        {
+            return v;
+        }
+        int c=0,r=0;
+        solve(root,c,r);
+        for(auto y:mmmp)
+        {
+            for(auto x:y.second)
+            {
+                //sort(x.second.begin(),x.second.end());
+                for(auto z:x.second)
+                {
+                    v.push_back(z.second);
+                }
+            }
+        }
+        return v;
+    }
