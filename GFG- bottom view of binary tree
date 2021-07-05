@@ -1,0 +1,23 @@
+void solve(Node* root,int c,int r,map<int,pair<int,int>> &mmmp)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        if(r>=mmmp[c].second)
+        {
+            mmmp[c]={root->data,r};
+        }
+        solve(root->left,c-1,r+1,mmmp);
+        solve(root->right,c+1,r+1,mmmp);
+    }
+     vector<int> bottomView(Node* root) {
+         map<int,pair<int,int>> mmmp;
+        vector<int> k;
+        solve(root,0,0,mmmp);
+        for(auto x:mmmp)
+        {
+            k.push_back(x.second.first);
+        }
+        return k;
+    } 
