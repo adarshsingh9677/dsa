@@ -1,4 +1,5 @@
-map<int,map<int,vector<pair<int,int>>>> mmmp;
+    //DFS
+    map<int,map<int,vector<pair<int,int>>>> mmmp;
     void solve(Node* root,int c,int r)
     {
         if(root==NULL)
@@ -26,6 +27,56 @@ map<int,map<int,vector<pair<int,int>>>> mmmp;
                 {
                     v.push_back(z.second);
                 }
+            }
+        }
+        return v;
+    }
+//
+//
+//
+//
+//
+//BFS
+vector<int> verticalOrder(Node *root)
+    {
+        vector<int>v;
+        if(root==NULL)
+        {
+            return v;
+        }
+        map<int,vector<int>> mmp;
+        queue<pair<Node*,int>>q;
+        q.push({root,0});
+        int curr=1,c=0,k=0;
+        while(!q.empty())
+        {
+            c=0;
+            while(!q.empty() && curr--)
+            {
+                Node*temp=q.front().first;
+                int x=q.front().second;
+                q.pop();
+                mmp[x].push_back(temp->data);
+                if(temp->left!=NULL)
+                {
+                    q.push({temp->left,x-1});
+                    c++;
+                }
+                if(temp->right!=NULL)
+                {
+                    q.push({temp->right,x+1});
+                    c++;
+                }
+            }
+            curr=c; 
+            k++;
+        }
+        
+        for(auto it1:mmp)
+        {
+            for(auto it2:it1.second)
+            {
+                v.push_back(it2);
             }
         }
         return v;
