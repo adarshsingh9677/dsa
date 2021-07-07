@@ -69,3 +69,37 @@ public:
         return false;
     }
 };
+
+
+
+
+//recursive and intuitive
+bool ispalindrome(string s,int left,int right,int count)
+    {
+        if(count>1)
+            return false;
+        while(left<=right)
+        {
+            if(s[left]!=s[right])
+            {
+                return (ispalindrome(s,left+1,right,count+1)||ispalindrome(s,left,right-1,count+1));
+            }
+            else
+            {
+                left++;
+                right--;
+            }
+        }
+        return true;
+        
+    }
+    
+    
+    bool validPalindrome(string s) {
+        
+        int count=0;
+        int left=0;
+        int right=s.size()-1;
+        return ispalindrome(s,left,right,count);
+        
+    }
