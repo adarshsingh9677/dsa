@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+int ind=0;
 class TNode
 {
     public:
@@ -17,7 +17,6 @@ class TNode
 };
 TNode* constructTree(vector<int> &inor, vector<int> &preor,int left,int right,unordered_map<int,int>&mmp)
 {
-    static int ind=0;
     if(left>right)
     {
         return NULL;
