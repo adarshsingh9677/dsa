@@ -1,0 +1,24 @@
+void constructTree(int inor[], int preor[],int left,int right,unordered_map<int,int>&mmp,int* ind)
+{
+    if(left>right)
+    {
+        return;
+    }
+    int currelemepos=mmp[preor[*ind]];
+    (*ind)++;
+    
+    constructTree(inor, preor,left,currelemepos-1,mmp,ind);
+    constructTree(inor, preor,currelemepos+1,right,mmp,ind);
+    cout<<inor[currelemepos]<<" ";
+}
+void printPostOrder(int in[],int pre[], int n)
+{
+        
+    unordered_map<int,int>mmp;
+    for(int i=0;i<n;i++)
+    {
+        mmp[in[i]]=i;
+    }
+    int ind=0;
+    constructTree(in, pre,0,n-1,mmp,&ind);
+}
