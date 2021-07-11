@@ -1,0 +1,30 @@
+Node* constructTree(int in[],int post[],int left,int right,unordered_map<int,int>&mmp,int *postind)
+    {
+        if(left>right)
+        {
+            return NULL;
+        }
+        int currele=post[*postind];
+        (*postind)--;
+        Node*currnode=new Node(currele);
+        if(left==right)
+        {
+            return currnode;
+        }
+        int currelempos=mmp[currele];
+        currnode->right=constructTree(in,post,currelempos+1,right,mmp,postind);
+        currnode->left=constructTree(in,post,left,currelempos-1,mmp,postind);
+       
+        return currnode;
+        
+    }
+Node *buildTree(int inorder[], int postorder[], int n) {
+   unordered_map<int,int> mmp;
+        for(int i=0;i<n;i++)
+        {
+            mmp[inorder[i]]=i;
+        }
+        int postind=n-1;
+        return constructTree(inorder,postorder,0,n-1,mmp,&postind);
+    
+}
