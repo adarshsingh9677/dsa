@@ -1,0 +1,24 @@
+void solve(struct Node* root,int k,int &istrue,unordered_map<int,int>&mmp)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        if(mmp.find(k-root->data)!=mmp.end())
+        {
+            istrue=1;
+            return;
+        }
+        else
+        {
+            mmp[root->data]=1;
+        }
+        solve(root->left,k,istrue,mmp);
+        solve(root->right,k,istrue,mmp);
+    }
+    int isPairPresent(struct Node *root, int k) {
+        unordered_map<int,int> ump;
+        int istrue=0;
+        solve(root,k,istrue,ump);
+        return istrue;
+    }
