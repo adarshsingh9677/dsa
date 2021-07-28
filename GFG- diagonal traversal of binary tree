@@ -1,0 +1,30 @@
+void diago(Node *root,int dlvl,map<int,vector<int>>&mmp)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    mmp[dlvl].push_back(root->data);
+    diago(root->left,dlvl+1,mmp);
+    diago(root->right,dlvl,mmp);
+    
+}
+
+vector<int> diagonal(Node *root)
+{
+   map<int,vector<int>> mmp;
+   vector<int> ans;
+   Node* iter;
+   diago(root,0,mmp);
+   
+   for(auto x:mmp)
+   {
+       for(auto p:x.second)
+       {
+           ans.push_back(p);
+       }
+   }
+   return ans;
+   
+   
+}
