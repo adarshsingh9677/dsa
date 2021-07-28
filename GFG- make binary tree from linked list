@@ -1,0 +1,28 @@
+void convert(Node *head, TreeNode *&root) {
+    vector<TreeNode*> v;
+    Node* iter=head;
+    while(iter!=NULL)
+    {
+        TreeNode *nt=new TreeNode(iter->data);
+        v.push_back(nt);
+        iter=iter->next;
+    }
+    int n=v.size(),k=n-1,i=0;
+    while(1)
+    {
+        if(2*i+1>k)
+        {
+            break;
+        }
+        v[i]->left=v[2*i+1];
+        if(2*i+2>k)
+        {
+            break;
+        }
+        v[i]->right=v[2*i+2];
+        
+        i++;
+    }
+    root=v[0];
+   
+}
