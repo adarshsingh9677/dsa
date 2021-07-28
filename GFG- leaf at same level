@@ -1,0 +1,30 @@
+void istrue(Node* root,int &h,int cnt,bool &k,int &f)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        istrue(root->left,h,cnt++,k,f);
+        istrue(root->right,h,cnt++,k,f);
+        if(root->left==NULL && root->right==NULL)
+        {
+            if(f==0)
+            {
+                h=cnt;
+                f=1;
+                return;
+            }
+            if(cnt!=h)
+            {
+                k=k&false;
+            }
+        }
+    }
+    bool check(Node *root)
+    {
+        int h=0;
+        bool k=true;
+        int f=0;
+        istrue(root,h,0,k,f);
+        return k;
+    }
