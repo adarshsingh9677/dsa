@@ -1,0 +1,23 @@
+int firstUniqChar(string s) {
+        int n=s.size();
+        unordered_map<char,pair<int,int>>mmp;
+        for(int i=0;i<n;i++)
+        {
+            if(mmp.find(s[i])==mmp.end())
+            {
+                pair<int,int> pp(i,1);
+                mmp[s[i]]=pp;
+            }
+            else
+                mmp[s[i]].second++;
+        }
+        int ans=-1;
+        for(auto x:mmp)
+        {
+            if(x.second.second==1)
+            {
+                ans=x.second.first;
+            }
+        }
+        return ans;
+    }
